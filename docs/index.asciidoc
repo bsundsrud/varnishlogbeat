@@ -1,0 +1,5 @@
+= Varnishlogbeat Docs
+
+Welcome to the Varnishlogbeat documentation.
+
+
