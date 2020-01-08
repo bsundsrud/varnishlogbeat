@@ -3,9 +3,10 @@
 ############################# Varnishlogbeat ######################################
 
 varnishlogbeat:
-  # Defines how often an event is sent to the output
-  period: 1s
-
+  # Path to varnish shared memory file
+  path: ""
+  # VSM connection timeout (ms)
+  timeout: 5000
 #================================ General =====================================
 
 # The name of the shipper that publishes the network data. It can be used to group
