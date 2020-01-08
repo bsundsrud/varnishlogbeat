@@ -12,6 +12,11 @@ file and ships it to ELK.
 * [Golang](https://golang.org/dl/) 1.13.5
 * varnish-dev 5.2+
 
+### Acquiring
+
+Run `go get github.com/bsundsrud/varnishlogbeat` to put the source in your `$GOPATH`.
+Change to the directory with `cd $GOPATH/src/github.com/bsundsrud/varnishlogbeat`.
+
 ### Build
 
 To build the binary for Varnishlogbeat run the command below. This will generate
