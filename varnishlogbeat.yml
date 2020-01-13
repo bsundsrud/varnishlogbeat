@@ -7,6 +7,15 @@ varnishlogbeat:
   path: ""
   # VSM connection timeout (ms)
   timeout: 5000
+  # Whitelist headers that should be included in the log
+  include_headers:
+    # (Be-)Request headers to include
+    req: []
+    # (Be-)Response headers to include
+    resp: []
+  # Include backend traffic in addition to client traffic
+  log_backend_traffic: true
+
 #================================ General =====================================
 
 # The name of the shipper that publishes the network data. It can be used to group

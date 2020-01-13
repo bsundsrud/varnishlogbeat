@@ -6,8 +6,19 @@ package config
 import "time"
 
 type Config struct {
-	Timeout time.Duration `config:"timeout"`
-	Path    string        `config:"path"`
+	Timeout           time.Duration  `config:"timeout"`
+	Path              string         `config:"path"`
+	IncludeHeaders    *IncludeConfig `config:"include_headers"`
+	LogBackendTraffic bool           `config:"log_backend_traffic"`
 }
 
-var DefaultConfig = Config{}
+type IncludeConfig struct {
+	ReqHeaders  []string `config:"req"`
+	RespHeaders []string `config:"resp"`
+	ObjHeaders  []string `config:"obj"`
+}
+
+var DefaultConfig = Config{
+	IncludeHeaders:    &IncludeConfig{},
+	LogBackendTraffic: true,
+}
