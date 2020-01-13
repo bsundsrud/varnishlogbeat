@@ -258,7 +258,6 @@ func (bt *Varnishlogbeat) harvest() error {
 				}
 				bt.client.Publish(event)
 				counter++
-				logp.Info("Event sent")
 
 				// destroy and re-create the map, general cleanup
 				tx = nil
