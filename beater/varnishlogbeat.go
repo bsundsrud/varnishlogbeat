@@ -177,14 +177,26 @@ func (bt *Varnishlogbeat) harvest() error {
 					tx[tag] = common.MapStr{key: value}
 				}
 			case "Hit":
+				tx["HitRaw"] = data
+
+				var objVxid uint64
+				var remainingTtl float64
+				var gracePeriod float64
+				var keepPeriod float64
 				parts := strings.SplitN(data, " ", 4)
-				if len(parts) != 4 {
-					return 0
+				switch len(parts) {
+				case 4:
+					keepPeriod, _ = strconv.ParseFloat(parts[3], 64)
+					fallthrough
+				case 3:
+					gracePeriod, _ = strconv.ParseFloat(parts[2], 64)
+					fallthrough
+				case 2:
+					remainingTtl, _ = strconv.ParseFloat(parts[1], 64)
+					fallthrough
+				case 1:
+					objVxid, _ = strconv.ParseUint(parts[0], 10, 32)
 				}
-				objVxid, _ := strconv.ParseUint(parts[0], 10, 32)
-				remainingTtl, _ := strconv.ParseFloat(parts[1], 64)
-				gracePeriod, _ := strconv.ParseFloat(parts[2], 64)
-				keepPeriod, _ := strconv.ParseFloat(parts[3], 64)
 				tx[tag] = common.MapStr{
 					"ObjVxid":      uint32(objVxid),
 					"RemainingTTL": remainingTtl,
